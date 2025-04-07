@@ -57,7 +57,7 @@ def obtener_respuesta(pregunta, estado_usuario):
     if any(opcion in pregunta for opcion in ['3', 'medios de pago','como puedo pagar','link de pago','pse']):
         return ("Los medios de pago disponibles son:\n"
                 "\n"
-                "1. Pagos PSE en el siguiente link: https://www.lilipink.com.co/\n"
+                "1. Pagos PSE en el siguiente link: https://www.appqr-signaturecredipink.com/en\n"
                 "\n"
                 "2. En Tiendas Lili Pink o Yoi Directamente con tu número de Cédula puedes ir tu o un tercero a generar el pago\n"
                  "\n"

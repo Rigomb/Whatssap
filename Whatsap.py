@@ -58,23 +58,22 @@ def enviar_mensajes_masivos():
 
         # Iterar sobre cada fila del DataFrame
         for key, row in df.iterrows():
-            numero = row["telefono"]  # Verifica el nombre correcto de la columna
-            mensaje = row["texto"]  # Verifica el nombre correcto de la columna
+            numero = row["telefono"] 
+            mensaje = row["texto"]  
             msj = f"{mensaje}" 
             print(msj)
             
-            # Intentar enviar el mensaje
+    
             enviado = enviar_mensaje_whatsapp(numero, mensaje)
             
-            # Actualizar el estado en la columna "estado"
+      
             if enviado:
                 df.at[key, 'estado'] = 'Enviado'
             else:
                 df.at[key, 'estado'] = 'No enviado'
             
-            sleep(5)  # Aumentar el tiempo de espera entre mensajes
+            sleep(5)
 
-        # Guardar el DataFrame actualizado con el estado de los mensajes
         df.to_excel("whatsApp_actualizado.xlsx", index=False)
         print("Mensajes enviados correctamente.")
     else:
@@ -84,16 +83,16 @@ def mostrar_notificacion():
     """Mostrar una notificación cuando el proceso de envío termine"""
     messagebox.showinfo("Proceso terminado", "Todos los mensajes han sido enviados exitosamente.")
 
-# Crear la ventana principal de la aplicación
+
 ventana = tk.Tk()
 ventana.title("Whatsapp Masivo")
 ventana.geometry("300x300")
 
-# Etiqueta de bienvenida
+
 etiqueta = tk.Label(ventana, text="BIENVENIDO")
 etiqueta.pack(pady=40)
 
-# Función que se ejecutará al presionar el botón "Enviar"
+
 def click():
     """Función para iniciar el envío masivo de mensajes"""
     print("Enviando mensajes masivos...")
