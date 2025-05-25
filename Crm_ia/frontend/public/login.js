@@ -1,0 +1,36 @@
+document.getElementByid("loginForm").addEventListener("submit", async function(event) {
+    event.preventDefault();
+
+    const email = document.getElementById("email").value;
+    const password = document.getElementById("password").value;
+
+    const datos = {
+        email: email,
+        password: password
+    };
+
+    try {
+        const response = await fetch("http://localhost:800login", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(datos)
+        });
+
+        const resultado = await response.json();
+        
+        if (response.ok) {
+            document.getElementById("mensaje").innerText = "Login exitoso. Token Recibido.";
+            consola.log("Token:", resultado.token);
+
+        } else {
+            document.getElementById("mensaje").innerText = "Error: " + resultado.detail;
+        }
+
+    }
+    catch (error) {
+        document.getElementById("mensaje").innerText = "Error de conexion con el servidor.";
+        console.error("Error:", error);
+    }
+});
